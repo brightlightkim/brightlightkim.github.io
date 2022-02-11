@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Main Activity</h1>
+<h2>AppCompatActivity</h2>
+<p>subclass of Android's Activity class that provides compatibility support for older versions of Android.</p>
+
+<h2>onCreate</h2>
+<p>it called when an instance of the activity subclass is created</p>
+<p>You can link the activity to its UI by using <br>
+Activity.setContentView(layoutResID: Int).<br>
+This function inflates a layout and puts it onscreen. <br>
+When a layout is inflated, each widget in the layout file is instantiated as defined by its attributes.<br>
+You specify which layout to inflate by passing in the layout's resource ID.</p>
+<br>
+<h2>Resources and Resource IDs</h2>
+<p>Layout is a resource. A resource is a piece of your application that is not code thing like image files, audio files, and XML files.<br>
+Resources for your project live in a subdirectory of the app/res directory. <br>
+To access a resource in code, you use its resource ID.<br>
+The resource ID for your layout is R.layout.activity_main</p>
+<br>
+<h3>R</h3>
+<p> R is the place where stores all of the resource ID for the entire layout and for each string.<br>
+However, it does not generate resource IDs for the individual widges in activity_main.xml<br>
+</p>
+<h3>To generate resource ID</h3>
+<p>you include an android:id= "@+id/true_button" <br>
+There is a +sign for android:id but not in the values for android:text.<br>
+This is because you are creating the resource IDs and only referencing the strings</p>
+
+<p>GitHub Page</p>
+</body>
+</html>
