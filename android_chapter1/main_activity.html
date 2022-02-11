@@ -28,6 +28,52 @@ However, it does not generate resource IDs for the individual widges in activity
 There is a +sign for android:id but not in the values for android:text.<br>
 This is because you are creating the resource IDs and only referencing the strings</p>
 
+
+<h3>Wiring Up Widgets</h3>
+<ul>
+    <li>get references to the inflated View objects</li>
+    <li>set listeners on those objects to respond to user actions</li>
+</ul>
+
+<h4>Get reference to the inflated View objects</h4>
+<p>Activity.findViewById(Int)<br>
+It could be a R.id.(blabla)</p>
+<br>
+
+<h4>Setting Listeners</h4>
+<p>Android appications are typically event driven<br>
+When your application is waiting for a specific event, we say that it is "listening for" that event.<br>
+The object that you create to respond to an event is called a listener, and the listener implements a listener interface for that event. <bR>
+Android SDK has listener interfaces for various events. So we don't hvae to worry about it.<br>
+
+ex: trueButton.setOnClickListener{ view: View -><br>
+    //Do somehting in response to the click here.<br>
+}<br>
+</p>
+
+<h5>Make a Toast</h5>
+<p>This shows up on the screen as a message.<br>
+ex: Toast.makeText( <br>
+        MainActivity.this, <br>
+        R.string.correct_toast, <br>
+        Toast.LENGTH_SHORT) <br>
+        .show()<br>
+We put this in the onClick of the setOnClickListener.
+Override the function of onClick here. 
+</p>
+
+<h6>Android Build Process</h6>
+<p>During the build process, the Android tools take your resources, code, and AndroidManifest.xml file (which contains metadata about the application.)<br>
+and turn them into an .apk file. This file is then signed with a debug key, which allows it to run on the emulator. <br>
+To distribute your .apk to the masses, you have to sign it with a release key. <br>
+<br>
+How do the contents of activity_main.xml turn into View objects in an application?<br>
+<br>
+Android Asset Packaging Tood(aapt2) compiles layout file resources into a more compact format.<br>
+These compiled recources are packaged into the .apk file. Then, when setContentView(...) is called in MainActivity's onCreate(Bundle?) function, MainActivity uses the LayoutInflater class to instantiate each of the View objects as defined in the layout file. <br>
+There are benefits to separating your presentation from the logic of the application. The main one is taking advantage of configuration changes built into the SDK.
+</p>
+
 <p>GitHub Page</p>
 </body>
 </html>
