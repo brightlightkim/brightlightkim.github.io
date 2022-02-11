@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+<h1>Create a Class</h1>
+<h2>Annotation</h2>
+<ul>
+    <li>It helps the code inspector built into Android Studio verify at compile time that usages of the constructor provide a valid string resource ID. It prevents runtime crashes where the constructor is used with an invalid resource ID</li>
+    <li>The annotation makes your code more readable for other developers</li>
+</ul>
+
+<br>
+
+<h2>Diagram</h2>
+<ul>
+    <li>Model (ex: Question class)</li>
+    <li>Controller (ex: MainActivity)</li>
+    <li>View (ex: layout) </li>
+</ul>
+<br>
+
+<h1>Model-View-Controller(MVC) and Android </h1>
+<p>All objects in your application must be a model object, a view object, or a controller object.</p>
+<br>
+
+<h2>Model Object</h2>
+<ul>
+    <li>Hold the application's data and "business logic."</li>
+    <li>It was designed to model the things in your app is concerned with. ex: user, product in a store, a photo on a server, a television show.</li>
+    <li>No knowledge of the UI</li>
+    <li>Sole Purpose: holding and maintaining data</li>
+    <li>Generally custom classes you create.</li>
+    <li>All of the model objects in your application compose its model layer.</li>
+</ul>
+<br>
+
+<h2>View Object</h2>
+<ul>
+    <li>know how to draw themselvews on the screen and how to respond to user input, like touches</li>
+    <li>If you can see it on the screen, then it is a view</li>
+    <li>Android provides various configurable view classes.</li>
+    <li>You can create your custom view classes.</li>
+    <li>An application's view objects make up its view layer.</li>
+    <li>ex: res/layout/activity_main.xml</li>
+</ul>
+
+<h2>Controller Objects</h2>
+<ul>
+    <li>tie the view and model objects together.</li>
+    <li>contain "application logic."</li>
+    <li>respond to various events triggered by view objects</li> 
+    <li>manage the flow of data to and from model objects and the veiw layer.</li>
+    <li>In Android, a controller is typically a subclass of Activity or Fragment.</li>
+    <li>ex: MainActivity</li>
+</ul>
+
+
+<h2>MVC Flow with user input</h2>
+<p>User Input >> (User interacts with view object) >> Views >> (View sends message to controller) >> Controller >> (Controller updates model Objects) >> Model</p><br>
+
+<p> Model >> (COntroller takes data from model objects that its views are interested in) >> Controller >> (Controller updates view with changes in model objects) >> Views</p>
+<br>
+
+<h2>Advantages of using MVC</h2>
+<ul>
+    <li>Helps with designing and understanding the application as a whole</li>
+    <li>makes classes easier to reuse</li>
+    <li></li>
+</ul>
+
+</body>
+
+</html>
