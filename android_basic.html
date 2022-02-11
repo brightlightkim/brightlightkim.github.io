@@ -9,25 +9,39 @@
     </p>
     <br>
     <h3>MainActivity</h3>
-    <h4>Layout</h4>
-    <p>activity_main.xml <br>
-        <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
+    <p>This is the part to link between Layout to View Objects<br>
+    </p>
+    <h3>Layout - XML</h3>
+    <h4>activity_main.xml </h4>
+    <p>the part to define widgets.<br></p>
+    <h5>strings.xml</h5>
+    <p>for string variable.<br>
+    ex: &lt;string name = "app_name"&gt;GeoQuiz&lt;/string&gt;</p>
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+    <h3>View Objects</h3>
+    <p>Views are the building blocks to compose a UI<br>
+        Everything on the screen is a view. Views that the user can see or interact with are called widgets.<br>
+    </p>
+    <p>Every widget is an instance of the View class or one of its subclasses (such as <b>TextView or Button</b>)</p>
+    <br>
+    <h5>View Group</h5>
+    <p>ViewGroup is a kind of View that contains and arranges other views.<br>
+        ViewGroup does not display content itself. ViewGroups are often referred to as layouts.<br>
+        In the Default activity layout, <b>ConstraintLayout</b> is the <b>ViewGroup</b> responsible for laying out its
+        sole child, a <b>TextView</b> widget<br>
+        LinearLayout inherits from <b>ViewGroup</b>. Other ones include FrameLayout as well.<br>
+    <ul>
+        <li>android:layout_width >> for width</li>
+        <li>android:layout_height >> for height</li>
+    </ul>
+    <ul>
+        <li>match_parent >> big as parent</li>
+        <li>wrap_content >> big as its content require</li>
+    </ul>
+    <ul>
+        <li>andoird:orientation >> can determine if it is vertical or horizontal</li>
+        <li>andoird:text >> what text to display. it can reference such as <b>@string/syntax</b></li>
+    </ul>
     </p>
 </body>
 
