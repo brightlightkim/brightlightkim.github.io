@@ -65,8 +65,48 @@
 <ul>
     <li>Helps with designing and understanding the application as a whole</li>
     <li>makes classes easier to reuse</li>
-    <li></li>
 </ul>
+
+<h3>Details on the Project</h3>
+<br>
+
+<h4>removing the android:text attribute and use tools:text instead</h4>
+<p>This will set the question text dynamically as the user clicks through the questions.</p>
+<p>It also specify the default string. This indicates clearly that this text is for preview purposes only.</p>
+<br>
+
+<h4>Adding an Icon</h4>
+<ul>
+    <li>mdpi: medium-density screens (~160dpi)</li>
+    <li>hdpi: high-density screens (~240dpi)</li>
+    <li>xhdpi: extra-high-density screens (~320dpi)</li>
+    <li>xxhdpi: extra-extra-high-density screens (~480dpi)</li>
+    <li>xxxhdpi: extra-extra-extra-high-density screens (~640dpi)</li>
+</ul>
+
+<p>When you add img, png, jpg, or gif, the res folder will be automatically assigned a resource ID.<br>
+the filenames must be lowercase and have no spaces.<br><br>
+
+To use this resource, all you have to do is using this resource ID in your code.</p>
+
+<h5>Referencing Resources in XML</h5>
+<p>You can add two attributes to the Button widget definition in the activity_main.xml.<br>
+ex: android:drawableEnd = "@drawable/arrow_right"<br>
+ex: android:drawablePadding = "4dp"<br></p>
+
+<h5>Screen Pixel Densities</h5>
+<p>Text Size is the pixel height of the text on the device's screen.<br>
+Margins specify the distances betwen views, adn padding specifies the distance between a view's outside edges and its content.</p>
+<br>
+<ul>
+    <li>px: for pixel for one onscreen pixel. Since all the device's dimention is different, it's not recommended.</li>
+    <li>dp: short for density-independent pixel. "dip" One dp is always 1/160 of an inch on a device's screen. You get the same size regardless of screen density.</li>
+    <li>sp: short for scale-independent pixel. sp are density-independent pixels that also take into account the user's font size preference. You will almost always use sp to set display text size.</li>
+    <li>pt, mm, in: These are scaled units, like dp, that allow you to specify interface sizes in points, millimeters, or inches. Not all devices are correctly configured for these units to scale correctly.</li>
+</ul>
+<p>You will use dp and sp almost exclusively. </p>
+<br>
+
 
 </body>
 
