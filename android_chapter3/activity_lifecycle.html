@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h1>Activity States and Lifecycle Callbacks</h1>
+    <br>
+    <h2>Activity State Diagram</h2>
+    <p>
+        Nonexistent >> onCreate() >> Stopped >> onStart() >> Paused >> Resumed<br>
+        Nonexistent << onDestroy() << Stopped << onStop() << Paused << Resumed<br>
+            //Entire lifetime(instance in memory)
+    </p>
+
+    <table style="width:100%">
+        <tr>
+            <th>State</th>
+            <th>In memory?</th>
+            <th>Visible to user?</th>
+            <th>In foreground</th>
+        </tr>
+        <tr>
+            <td>nonexistent</td>
+            <td>no</td>
+            <td>no</td>
+            <td>no</td>
+        </tr>
+        <tr>
+            <td>stopped</td>
+            <td>yes</td>
+            <td>no</td>
+            <td>no</td>
+        </tr>
+        <tr>
+            <td>paused</td>
+            <td>yes</td>
+            <td>yes/partially*</td>
+            <td>no</td>
+        </tr>
+        <tr>
+            <td>In foreground?</td>
+            <td>yes</td>
+            <td>yes</td>
+            <td>yes</td>
+        </tr>
+    </table>
+
+    <h2>Nonexistent</h2>
+    <p>represents an activity that has not been lauched yet or an activity that was just destroyed.<br>
+        this state is sometimes referred to as the "destroyed" state.<br>
+        There is no instance in memory and there is no associated view for the user to see or interact with.<br>
+    </p>
+
+    <h2>Stopped</h2>
+    <p>has an instance in memory but whose view is not visible on the screen.<br>
+        occurs in passing when the activity is first spinning up and re-occurs any time the view is fully stopped.<br>
+    </p>
+    <br>
+
+    <h2>Paused</h2>
+    <p>
+        not active in the foreground but whose view is visible or partially visible.<br>
+        An activity would be partically visible<br>
+        ex:if the user lauched a new dialog-themed or transparent activity on top of it.<br>
+        An activity could also be fully visible but not in the foreground if the user is viewing two activities in
+        multi-window mode.<br>
+    </p>
+
+    <h2>Resuemed</h2>
+    <p>
+        in memory, fully visible, and in the foreground.<br>
+        It is the activity the user is currently interacting with. <br>
+        Only one activity across the entire system can be resumed state at any given time.<br>
+        That means that if one activity is moving into the resumed state,another is likely moving out of the resumed
+        state.<br>
+    </p>
+
+    <h2>Lifecycle Callbacks</h2>
+    <h3>onCreate(Bundle?)</h3>
+    <ul>
+        <li>inflating widgets and putting them on screen (in the call to setContentView(Int))</li>
+        <li>getting references to inflated widgets</li>
+        <li>setting listeners on widgets to handle user interaction</li>
+        <li>connecting to external model data</li>
+    </ul>
+    <p>We simply override the callbacks in your activity subclass</p>
+
+    <h2>Logging the Activity LifeCycle</h2>
+    <p>
+        In Andoird, the android.util.Log class sends log messages to a shared system-level log<br>
+        Log has several functions for logging messages.<br>
+        public static int d(String tag, String msg)<br>
+        d stands for debug.<br>
+        1st parameter: source of the message.<br>
+        2nd parameter: contents of the message<br>
+    </p>
+
+    <h2>FrameLayout</h2>
+    <p>
+        simplest ViewGroup and does not arrange its children in any particular manner.<br>
+        In this layout, child views will be arranged according to their andorid:layout_gravity attributes.<br>
+        This is why you added android:layout_gravity to TextView, LinearLayout, and Button.<br>
+        The Button children of teh nested LinearLayout can stay exactly the same since they are not direct children of the FrameLayout.<br>
+
+    </p>
+
+    <h3>How to fix the stop problem during the multi-window system</h3>
+    <p>
+        Move playback resuming and pasuing to onStart() and onStop().<br>
+        This goes for any live-updating data, like a photo gallery app<br>
+        In short, your activities should update the UI during their entire visible lifecycle from onStart() to onStop().<br>
+    </p>
+
+    <h3>Log</h3>
+    <table style="width:100%">
+        <tr>
+            <th>Log Level</th>
+            <th>Function</th>
+            <th>Used for</th>
+        </tr>
+        <tr>
+            <td>ERROR</td>
+            <td>Log.e(...)</td>
+            <td>errors</td>
+        </tr>
+        <tr>
+            <td>Warning</td>
+            <td>Log.w(...)</td>
+            <td>warnings</td>
+        </tr>
+        <tr>
+            <td>INFO</td>
+            <td>Log.i(...)</td>
+            <td>informational messages</td>
+        </tr>
+        <tr>
+            <td>DEBUG</td>
+            <td>Log.d(...)</td>
+            <td>debug output (may be filetered out)</td>
+        </tr>
+        <tr>
+            <td>VERBOSE</td>
+            <td>Log.v(...)</td>
+            <td>development only</td>
+        </tr>
+    </table>
+
+    <ul>
+        <li>one that takes a TAG string and a message string</li>
+        <li>one that takes those two arguments plus an instnace of Throwable</li>
+    </ul>
+
+</body>
+
+</html>
