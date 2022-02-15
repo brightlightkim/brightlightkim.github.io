@@ -105,7 +105,8 @@
     <h2>Gradle</h2>
     <p>Allows for the specification of new dependencies.<br>
         Gradle will find, download, and include the dependencies for you during the compile.<br>
-        onCreate accepts a nullable bundle as input. >> there is no state when a new instance of the activity is launched by the user the first time. So in this case the bundle would be null. <br>
+        onCreate accepts a nullable bundle as input. >> there is no state when a new instance of the activity is
+        launched by the user the first time. So in this case the bundle would be null. <br>
         When the activity is re-created after roatation or process death, the bundle object will be non-null.<br>
 
     </p>
@@ -117,16 +118,20 @@
         <li>make scontinuing a download operation across a configuration change simple.</li>
         <li>Offers an easy way to keep data that was expensive to load in memory across a configuration change.</li>
         <li>gets cleaned up automatically once the user finishes the activity.</li>
-        <li>not shine int the process death scenario since it gets wiped away from memory along with the process and everything in it.</li>
-        <li>onSaveInstanceState has its own limitations >> serialized to desk >> should avoid stashing any large or complex objets.</li>
-        
+        <li>not shine int the process death scenario since it gets wiped away from memory along with the process and
+            everything in it.</li>
+        <li>onSaveInstanceState has its own limitations >> serialized to desk >> should avoid stashing any large or
+            complex objets.</li>
+
     </ul>
 
     <h3>Solutions</h3>
     <ul>
         <li>Use onSaveInstanceState to store the minimal amount of information necessary to recreate the UI state.</li>
-        <li>Use ViewMoel to cache the rich set of data needed to populate the UI in memory across configuration changes for quick and easy access.</li>
-        <li>When the activity is re-created after process death, use the saved instance state infromation to set up the ViewModel as if the ViewModel and activity were never desroyed.</li>
+        <li>Use ViewMoel to cache the rich set of data needed to populate the UI in memory across configuration changes
+            for quick and easy access.</li>
+        <li>When the activity is re-created after process death, use the saved instance state infromation to set up the
+            ViewModel as if the ViewModel and activity were never desroyed.</li>
     </ul>
 
     <h3>How to solve with the redundant work?</h3>
