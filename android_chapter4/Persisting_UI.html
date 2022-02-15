@@ -1,17 +1,144 @@
 <!DOCTYPE html>
 <html>
+
 <body>
 
-<h1>Persisting UI State</h1>
+    <h1>Persisting UI State</h1>
 
-<h2>ViewModel</h2>
-<p>Comes from an Android Jetpack library called lifecycle-extensions.<br>
-This is one of many libraries that you will use throughout this book. <br>
+    <h2>ViewModel</h2>
+    <p>Comes from an Android Jetpack library called lifecycle-extensions.<br>
+        This is one of many libraries that you will use throughout this book. <br>
+        The first thing to do is to add dependencies.<br>
+    </p>
+    <h3>Basic View Model</h3>
+    <p>on?Cleared() function is called just before a ViewModel is destroeyd.</p>
+    <P>The ViewModelProviders class (note the plural “Providers”) provides instances of the ViewModelProvider class.
+        <br> If you get stuck finding the ViewModelProviders class, you should do the implementation in the build
+        gradle(app)<br>
+        as "implementation ........"
+    </P>
+    <br>
+
+    <h4>ViewModelPorviders Class</h4>
+    <p>- Provides instances of the ViewModelProvider class. <br>
+        ViewModelProvider.of(this) creates and returns a ViewModelProvider associated with the activity.<br>
+    </p>
+
+    <h4>ViewModelProvider Class</h4>
+    <p>provides instances of ViewModel to the activity. Calling provider.get(QuizViewModel::class.java) returns an
+        instance of QuizViewModel.<br>
+        ex: ViewModelProvides.of(this).get(QuizViewModel::class.java)<br>
+        ViewModelProvider class acts like a registry of ViewModels. <br>
+        When the activity queries for a QuizViewModel for the first time, ViewModelProvider creates and returns a new
+        QuizViewModel instance.<br>
+        When the activity queries for the QuizViewModel after a configuration change, the instance that was first
+        created is returned. <br>
+        When the activity is finished (such as when the user presses the back button), the ViewModel-Activity pair is
+        removed from memory.<br>
+    </p>
+
+    <h3>ViewModel Lifecyle and ViewModelProvider</h3>
+    <p>
+        Activities: resumed, paused, stopped, and nonexistent.
+        When the user finishes an activity, they expect their UI state to be reset. When the user rotates an activity,
+        they expect their UI state to be the same before and after rotation.<br>
+        <br>
+
+        You can check two scenarios by checking the activitiey's isFinishing property.<br>
+        If (isFinishing == true){<br>
+        //destoryed because the user finished the activity.<br>
+        }<br>
+        else{<br>
+        being destoryed by the system because of a configuration change.<br>
+        }<br>
+        <br>
+        There is a better way >> ViewModel does the tracking isfinishing and preserve UI state.<br>
+
+        ViewModel's lifecycle more closely mirrors the user's expectations. is destroyed only when its associated
+        activity is finished.<br>
+
+        ViewModel >> with activity's lifecycle >>scoped to that activity's lifecycle. >> ViewModel remain in memory
+        regardless of the activity's state, until the activity is finished.<br>
+
+        Once the activity is finished, the ViewModel instance is destroyed.<br>
+
+        (Cautions)<br>
+        - ViewModel should never hold a reference to an activity or a view, otherwise you will introduce a memory
+        leak.<br>
+        <br>
+
+        If the ViewModel tried to update the view oof the stale activity, it would trigger an illegalStateException.<br>
+
+    </p>
+
+    <h3>Add data to your ViewModel</h3>
+    <p>
+        If we put data into the ViewModel, it will survive the rotation.<br>
+    </p>
+
+    <h2>Saving Data Across Process Death</h2>
+    <p>
+        There are other times that OS can destroy an activity even though the user does not intend it to.<br>
+        How can you save UI state data and use it to reconstruct the activity?
+    </p>
+
+    <h3>Saved Instance State</h3>
+    <p>
+        Saved INstance State is data the Os teporarily stores outside of the activity.<bR>
+        You can add values to saed instance state by overriding Activity.onSaveInstanceState(Bundle).<br>
+        The OS calls Activity.onSaveInstanceState(Bundle) any time an activity that is not finished moves to the stopped
+        state (when the user presses the Home button and then launches a different app.)<br>
+        This timing is important because stopped activities are marked as killable. <bR>
+        Activity.onSaveInstanceState(Bundle) was already called when app process is killed.<br>
+
+    </p>
+    <h4>Overrideing onSaveInstanceState(Bundle)</h4>
+    <p>
+        add a constant that will be the key for the key-value pair that will be stored in the bundle.<br>
+        override onSaveInstanceState(Bundle) to write the value of currentIndex to the bundle with the constant as its
+        key.<br>
+    </p>
+    <h3>Bundle</h3>
+    <p>a structure that maps string keys to values of certain limited types.</p>
 
 
+    <h2>Gradle</h2>
+    <p>Allows for the specification of new dependencies.<br>
+        Gradle will find, download, and include the dependencies for you during the compile.<br>
+        onCreate accepts a nullable bundle as input. >> there is no state when a new instance of the activity is launched by the user the first time. So in this case the bundle would be null. <br>
+        When the activity is re-created after roatation or process death, the bundle object will be non-null.<br>
 
-</p>
+    </p>
 
+    <h2>ViewModel vs onSaveInstanceState</h2>
+    <h3>ViewModel</h3>
+    <ul>
+        <li>shines when you use it to orchestrate dynamic data for the activity</li>
+        <li>make scontinuing a download operation across a configuration change simple.</li>
+        <li>Offers an easy way to keep data that was expensive to load in memory across a configuration change.</li>
+        <li>gets cleaned up automatically once the user finishes the activity.</li>
+        <li>not shine int the process death scenario since it gets wiped away from memory along with the process and everything in it.</li>
+        <li>onSaveInstanceState has its own limitations >> serialized to desk >> should avoid stashing any large or complex objets.</li>
+        
+    </ul>
 
+    <h3>Solutions</h3>
+    <ul>
+        <li>Use onSaveInstanceState to store the minimal amount of information necessary to recreate the UI state.</li>
+        <li>Use ViewMoel to cache the rich set of data needed to populate the UI in memory across configuration changes for quick and easy access.</li>
+        <li>When the activity is re-created after process death, use the saved instance state infromation to set up the ViewModel as if the ViewModel and activity were never desroyed.</li>
+    </ul>
+
+    <h3>How to solve with the redundant work?</h3>
+    <p>
+        make ViewModel a little smarter.
+        first check whether the data is fresh before doing the work to pull in and update the rest of the data.
+        <br>
+    </p>
+    <ul>
+        <li>Shared preferences: fine for very simple and small data</li>
+        <li>Local Database: beter option for larger, more complex data.</li>
+    </ul>
 </body>
+
 </html>
