@@ -2,8 +2,44 @@
 <html>
 <body>
 
-<h1>Hello World</h1>
-<p>GitHub Page</p>
+<h1>Debugging Android Apps</h1>
+<h2>Type of Bugs</h2>
+<ul>
+    <li>Crash Bugs</li>
+    <li>Misbehaviors</li>
+</ul>
+
+
+<h2>Logcat</h2>
+<p>No Filter to find Red or put Log Level to Error if too much<br>
+You can also search for the text fatal exception, which will bring you straight to the exception that caused the app to crash.<br>
+The report tells you the top-level exception and its stack trace.</p>
+<h2>Android Lint</h2>
+<p>Android Lint is a astatic analyzer for Android code.<br>
+A static analyzer is a program that examines your code to find defects wihtout running it.<br>
+Lint uses its knowledge of the Android frameworks to look deeper into your code and find problems that the copmiler cannot.<br>
+Lint can also perform type-checking for objects that are defined in XML.<br>
+<b>We recommend you to take all Lint warnings seriously, even if you ultimately decide not to address them. <bR>
+</b>
+</p>
+<h2>Issued with the R class</h2>
+<p>Issues with R class occur when you reference resources before adding them or delete resources that other files refer to.<br>
+Usually, resaving the files once the resource is added or the references are removed will cause Android Studio to rebuild without any fuss.<br>
+<b>Recheck the validity of the XML in your resource files</b> will help you when you really stuck.<br>
+Layout XML is not always validated, so typos in these files may not be pointedly brought to your attention. Finding the typo and resaving the file should cause R.java to regenerate.<br>
+So typos in these filees may not be pointedly brought to your attention.<br>
+<b>Clean your project</b> <br>
+Select Build -> Clean Project. Android Studio will rebuild the project from scratch.<br>
+<b>Sync your project with Gradle</b><br>
+If you make changes to your build.gradle file, you will need to sync those changes to update your project's build settings. Select File -> Sync Project with Gradle Files.<br>
+<b>Run Android Lint</b><br>
+Pay close attention to the warnings from Lint. With this tool, you will often discover unexpected issues.<br>
+
+
+</p>
+
+<h2>Debugger with Android Studio</h2>
+<p>breakpoints</p>
 
 </body>
 </html>
