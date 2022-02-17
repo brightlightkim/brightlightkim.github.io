@@ -5,7 +5,95 @@
 
 <h1>Second Activity</h1>
 <h2>MainActivity</h2>
-<p></p>
+<h3>startActivity(Intent)</h3>
+<p>
+    When an activity calls >> sA >> sent to the OS.<br>
+    ActivityManager >> Activity instance >> calls its onCreate(Bundle?) function<br>
+    How it knows which activity? >> Intent Parameter.<br>
+
+</p>
+
+<h4>Communicating with intents</h4>
+<p>
+    An intent is an object that a component can use to communicate with the OS.
+    <ul>
+        <li>Activities</li>
+        <li>Services</li>
+        <li>Broadcast receivers</li>
+        <li>Content Providers</li>
+    </ul>
+    <br>
+    Intents are multipurpose communication tools, and the Intent class provides different construcors depending on what you are using the intent to do.<br>
+    <br>
+
+</p>
+<h5>Using Intent Extras</h5>
+<p>
+    Extra is like a constructor arguments. The OS forwards the intent to the recipient activity, which can then access the extras and retrieve the data. <br>
+    Extra is structured as a key-value pair.<br>
+    Intent.putExtra(...)<br>
+    ex) Intent.putExtra(String name, boolean value)<br>
+    With a string key and value itself. <br>
+    It's possible to chain multiple calls if you need to.<br>
+    <br>
+
+    An activity may be started from several different places, so you should define keys for extras on the activities that retrieve and use them. <br>
+    Using your package name as a qualifier for your extra, prevents name collissions with extras from other apps.<br>
+
+    You can encapsulate to prevent to know the implementation details of its intents.
+
+</p>
+
+<h5>newIntent(...) Function</h5>
+<p>
+    This function allows you to create and Intent properly configured with the extras CheatActivity will need.<br>
+    A companion object allows you to access functions without having an instance of a class, similar to static functions in Java<br>
+    Using a newIntent(...) function inside a companion object like this for your activity subclasses will make it easy for other code to properly configure their launching intents. <br>
+    You can add more in the newIntent as much as you can with data variable.<br>
+
+</p>
+
+<h5>Use the newIntent Data</h5>
+<p>
+    To retrieve you will use the Intent.getBooleanExtra(String, Boolean).<br>
+
+</p>
+
+<h5>Getting a result back from a child activity</h5>
+<p>
+    Activity.startActivityForResult(Intent, Int) function helps you to get the data back.<br>
+    First parameter is the same intent as before.<br>
+    The Second parameter is the request code.<br>
+    Request code is a user-defined integer that is sent to the child activity and then received back by the parent.<br>
+    It's used when an activity starts more than one type of child activity and needs to know who is reporting back. <br>
+    MainActivity will only ever start one type of child activity, but using a constant for the request code is a best practice that will set you up well for future changes.<br>
+
+</p>
+
+<h5>Setting a result</h5>
+<p>
+    setResult(int resuldCode)<br>
+    setResult(int resultCode, Intent data)<br>
+
+    result code is one of two predefined constants.<br>
+
+    Typically, the result code is one of two predefined constants:<br>
+    - Activity.RESULT_OK or Activity.RESULT_CANCELED or RESULT_FIRST_USER(offset when definnig your own result codes)<br>
+    <br>
+</p>
+
+<h5>Sending back an intent</h5>
+<p>
+    Intent >> put extra >>call Activity.setResult(Int, Intent) to get that data into MainActivity's hands.<br>
+    After this, when the user returns to the MainActivity, the ActivityManager calls this function.<br>
+    <b>onActivityResult(int requestCode, int resultCode, Intent data)</b><br>
+    Final step is to override this function to handle the result. 
+</p>
+
+<h5>Handling a result</h5>
+<p>
+    
+</p>
 
 </body>
 
