@@ -37,12 +37,18 @@
             View view = inflater.inflate(R.layout.fragment_crime, container,
             false);
             <br>
-            This is the part good for setting it by finding. ex: view.findViewById(R.id.whatid);
+            This is the part good for setting it by finding. ex:
+            view.findViewById(R.id.whatid);
             <br>
             Fragment cannot be inflated by itself. It needs activity.
         </p>
 
         <h1>Hosting a UI Fragment</h1>
-
+        <p>
+            An activity must:<br>
+            - define a spot in its layout for the fragment's view<br>
+            - manage the lifecycle of the fragment instance<br>
+            
+        </p>
     </body>
 </html>
