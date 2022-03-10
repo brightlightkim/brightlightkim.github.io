@@ -11,18 +11,38 @@
         </p>
         <h2>What is Fragment?</h2>
         <p>
-            Fragment is a controller object that an activity can deputize to perform tasks.<br>
+            Fragment is a controller object that an activity can deputize to
+            perform tasks.<br>
             Most commonly the task is managing a UI<br>
             UI can be an entire screen or just one part of the screen <br>
             Fragment managing a UI is known as a UI fragment.<br>
             Activity's view can hold a container for the fragment. <br>
-            The fragment's view is inserted into the container once it is inflated.<br>
-            An activity can have multiple containers in its view for different fragments<br>
+            The fragment's view is inserted into the container once it is
+            inflated.<br>
+            An activity can have multiple containers in its view for different
+            fragments<br>
 
         </p>
-        <img src="./fragment1.PNG"/>
+        <img src="./fragment1.PNG" />
         <img src="./fragment2.PNG" alt="">
         <p>Object diagram for CriminalIntent</p>
-        
+
+        <h1>Basic Fragment Info</h1>
+        <p>
+            Fragment layout can be created with onCreateView Functions
+            <br> Android supports creating Fragment wih its layout and ViewModel
+            at the same time<br>
+            onStart is good for setting the functions for "Changed" Listners.
+            <br>
+            View view = inflater.inflate(R.layout.fragment_crime, container,
+            false);
+            <br>
+            This is the part good for setting it by finding. ex: view.findViewById(R.id.whatid);
+            <br>
+            Fragment cannot be inflated by itself. It needs activity.
+        </p>
+
+        <h1>Hosting a UI Fragment</h1>
+
     </body>
 </html>
