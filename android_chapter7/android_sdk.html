@@ -4,6 +4,89 @@
         
     </head>
     <body>
+        <h1>ActivityOptions</h1>
+        <p>This is the part to create the animation.
+            <br>
+            Example: <br>
+            cheatButton.setOnClickListener(new View.OnClickListener() {<br>
+            @Override<br>
+            public void onClick(View view) {<br>
+                // Start CheatActivity<br>
+                boolean answerIsTrue = <br>
+                            getQuizViewModel().getCurrentQuestionAnswer();<br>
+                Intent intent = CheatActivity.newIntent(MainActivity.this,<br>
+                                                        answerIsTrue);<br>
+                ActivityOptions options = <br>
+                    ActivityOptions.makeClipRevealAnimation(<br>
+                        view, 0, 0, view.getWidth(), view.getHeight());<br>
+							
+                startActivityForResult(intent, REQUEST_CODE_CHEAT,<br>
+                                       options.toBundle());<br>
+            }<br>
+        });<br>
 
+        </p>
+        <h2>Better Approach</h2>
+        <p>
+            Add @SuppressLint("RestrictedApi")<br>
+            <br>
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {<br>
+                    ActivityOptions options = <br>
+                        ActivityOptions.makeClipRevealAnimation(<br>
+                            view, 0, 0, view.getWidth(), view.getHeight());<br>
+                    startActivityForResult(intent, REQUEST_CODE_CHEAT, <br>
+                                           options.toBundle());<br>
+                } else {<br>
+                    startActivityForResult(intent, REQUEST_CODE_CHEAT);<br>
+                }<br>
+            
+            @This is the way to handle the compatibility
+        </p>
+
+        <h1>Jetpack Libraries</h1>
+        <p>
+            Guarding API is not the optimal<br>
+            1. It's more work for me as a developer.<br>
+            2. It means that users of your app will have a different experience based on the version their device is running<br>
+            <br>
+            Jetpack Libaries offer new features (like ViewModel), backward compatibility for new features on older devices and provide consistent behavior when possible across Android versions.<br>
+            It allows you to write a few conditional API checks as possible.<br>
+            <br>
+
+        </p>
+
+        <h1>Using the Android Developer Documentation</h1>
+        <p>
+            Use the developer documentation right away. <br>
+          
+        </p>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Platform</td>
+                    <td>Information on the basic platform, focusing on the supported form factors and the different Android versions.</td>
+                </tr>
+                <tr>
+                    <td>Android Studio</td>
+                    <td>Articles on the IDE to help learn the different tools and workflows to make your life easier.</td>
+                </tr>
+                <tr>
+                    <td>Google Play</td>
+                    <td>Tips and tricks for deploying your apps as well as making your apps more successful with users.</td>
+                </tr>
+                <tr>
+                    <td>Android Jetpack</td>
+                    <td>Information about the Jetpack libraries and how the Android team is striving to improve the app development experience. Some of the Jetpack libraries are used in this book, but you should explore this section for the full list.</td>
+                </tr>
+                <tr>
+                    <td>Docs</td>
+                    <td>The main page for the developer documentation. Here you will find information on the individual classes in the framework as well as a trove of tutorials and codelabs that you can work through to improve and hone your skills.</td>
+                </tr>
+                <tr>
+                    <td>News</td>
+                    <td>Articles and posts to keep you up to date on the latest happenings in Android.</td>
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>
