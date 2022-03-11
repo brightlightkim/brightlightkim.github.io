@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Java Threads</h1>
+
+<h2>What are Threads in Java?</h2>
+<p>
+    Multithreading can run concurrently.
+</p>
+
+<h2>The Java Thread Model</h2>
+<ul>
+    <li>New - When we create an instance of Thread class, a thread is in a new State</li>
+    <li>Runnable - The Java thread is in running state</li>
+    <li>Suspended - A running thread can be suspended, which temporarily suspends its activity. A suspended thread can then be resumed, allowing it to pick up where it left off.</li>
+    <li>Blocked - A java thread can be locked when waiting for a resource.</li>
+    <li>Terminated - A thread can be terminated, which halts its execution immediately at any given time. Once a thread is terminated, it cannot be resumed.</li>
+</ul>
+
+<h2>Multithreading in Java</h2>
+<p>Thread Class, its methods, and its companion interface, Runnable
+    <br>
+    To create a new thread, your program will either extend Thread or implement the Runnable interface.
+    <br>
+    The thread has following methods.
+</p>
+
+<img src="./thread1.PNG" alt="">
+
+
+<h2>Main Java Thread</h2>
+<h3>What this matter?</h3>
+<ul>
+    <li>Because this thread effects the other ‘child’ threads</li>
+    <li>Because it performs various shutdown actions</li>
+    <li>It is created automatically when your program is started.</li>
+</ul>
+<h3>How to Create a Java Thread?</h3>
+<ul>
+    <li>Implementing the Runnable Interface</li>
+    <li>By extending the Thread</li>
+</ul>
+<h3>Runnable Interface</h3>
+<p>The easiest way. <br>
+    Example:<br>
+    public class myClass implements Runnable {<br>
+        public void run(){<br>
+            System.out.println("MyClass running");<br>
+        } <br>
+    } <br>
+<br>
+    Thread t1 = new Thread(new MyClass()); <br>
+    t1.start(); <br>
+    <br>
+    When the thread started it will call the run() method.
+</p>
+<p>Second Way: Extending Java Thread <br>
+Example: <br> <br>
+public class MyClass extends Thread { <br>
+     public void run(){ <br>
+     System.out.println("MyClass running"); <br>
+   } <br>
+} <br>
+How to use it? <br>
+MyClass t1 = new MyClass (); <br>
+T1.start(); <br>
+</p>
+<h2>How to Create a Java Thread?</h2>
+<p>
+class MyThread implements Runnable { <br>
+String name; <br>
+Thread t; <br>
+    MyThread (String thread){ <br>
+    name = threadname; <br>
+    t = new Thread(this, name); <br>
+System.out.println("New thread: " + t);<br>
+t.start();<br>
+}<br>
+ <br>
+ <br>
+public void run() {<br>
+ try {<br>
+     for(int i = 5; i > 0; i--) {<br>
+     System.out.println(name + ": " + i);<br>
+      Thread.sleep(1000);<br>
+}<br>
+}catch (InterruptedException e) {<br>
+     System.out.println(name + "Interrupted");<br>
+}<br>
+     System.out.println(name + " exiting.");<br>
+}<br>
+}<br>
+ 
+class MultiThread {<br>
+public static void main(String args[]) {<br>
+     new MyThread("One");<br>
+     new MyThread("Two");<br>
+     new NewThread("Three");<br>
+try {<br>
+     Thread.sleep(10000);<br>
+} catch (InterruptedException e) {<br>
+      System.out.println("Main thread Interrupted");<br>
+}<br>
+      System.out.println("Main thread exiting.");<br>
+      }<br>
+}
+
+
+</p>
+
+</body>
+</html>
