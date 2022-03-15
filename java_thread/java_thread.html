@@ -103,10 +103,85 @@ try {<br>
 }<br>
       System.out.println("Main thread exiting.");<br>
       }<br>
-}
+}</p>
 
-
+<h1>UI Thread</h1>
+<p>
+    Everything happen with UI widgets >> execute codes with this. <br>
+    Various threads. <br>
+    Event to happen immediately. <br>
+    Don't evecute something really big. <br>
+    Access internet should not happen with UI Thread. <br>
+    If the file is too small (exception) <br>
 </p>
 
+<h2>Android UI Thread</h2>
+<p>Internet >> Throw exception. <br>
+    Don't make a UI Thread. 
+</p>
+
+<h2>Background Thread</h2>
+<p>
+    AsyncTask is the old way of doing stuff. <br>
+    java.util.concurrent package is the preferred way of doing it. <br>
+    - Uses an ExecutorServie to execute the thread. <br>
+    - requires integration with the Android UI thread. <br>
+    <br>
+</p>
+
+<h3>Runnable vs Callable</h3>
+<ul>
+    <li></li>
+</ul>
+<p>
+Write a class that implements the Runnable interface <br>
+    ■ Your code goes in the public void run()method <br>
+    ■ Preferred when you don’t need to return a result <br>
+    ■ Most Cases: Use Runnable >> In this class only this. <br>
+<br>
+Write a class that implements the Callable<V> interface <br>
+    ■ Your code goes in the public V call()method <br>
+    ■ Preferred when you need to return a result <br>
+<br>
+</p>
+
+<h3>Integrate a background thread with the Android UI Thread.</h3>
+<p>
+    1. Create an android.os.Handler class that can process messages sent from the background thread <br>
+        - Create it from the UI (main) thread or exp;licitly connect it tot he UI thread <br>
+        - Write code in it's 'handleMessage' method to interact with the UI. <br>
+    <br>
+    2. Create a Runnable class for the background task. <br>
+        - Pass the Handler to the Runnable Class <br>
+        - Include the code you want to execute in the run method <br> 
+    <br>
+    3. Create an ExecutorService and submit the Runnable class to it to cause it to execute in a background thread <br>
+    <br>
+
+</p>
+<br>
+
+<h3>Example of android.os.Handler Class</h3>
+
+<img src="./handler.PNG" alt="">
+<br>
+<h3>Create a Runnable Class</h3>
+<img src="./runnable.PNG" alt="">
+<br>
+
+<h3>ExecutorService</h3>
+<p>
+    ExecutorService executor = Executors.newSingleThreadExecutor();<br>
+    executor.submit(task); <br>    
+</p>
+<br>
+
+<h3>required Android Permissions</h3>
+<p>
+    you must specify permissions in the AndroidManifest.xml file. <br>
+    <uses-permission android:name=""android.permission.INTERNET"/> <br>
+    Also required on Android OS 9 or later: <br>
+    <application android:usesCleartextTraffic="true">
+</p>
 </body>
 </html>
